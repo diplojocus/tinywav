@@ -40,6 +40,7 @@ typedef enum TinyWavSampleFormat {
 } TinyWavSampleFormat;
 
 typedef struct TinyWav {
+  FILE *in_f;
   FILE *f;
   int16_t numChannels;
   uint32_t totalFramesWritten;
@@ -51,6 +52,8 @@ int tinywav_new(TinyWav *tw,
     int16_t numChannels, int32_t samplerate,
     TinyWavSampleFormat sampFmt, TinyWavChannelFormat chanFmt,
     const char *path);
+
+int tinywav_read(TinyWav *tw, const char *path);
 
 size_t tinywav_write_f(TinyWav *tw, void *f, int len);
 
